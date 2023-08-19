@@ -1,22 +1,26 @@
 package br.unitins.tp1.faciliJus.model;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import java.time.LocalDate;
 
-public class Advogado extends PanacheEntity {
-    private Integer id;
+import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Advogado {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;
-    private Integer oab;
+    private String oab;
 
-    public Advogado() {
-
-    }
-    
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getNome() {
@@ -37,10 +41,10 @@ public class Advogado extends PanacheEntity {
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    public Integer getOab() {
+    public String getOab() {
         return oab;
     }
-    public void setOab(Integer oab) {
+    public void setOab(String oab) {
         this.oab = oab;
     }
 }
