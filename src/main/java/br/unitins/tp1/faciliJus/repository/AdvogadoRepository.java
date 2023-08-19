@@ -9,7 +9,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class AdvogadoRepository implements PanacheRepository<Advogado>{
     public List<Advogado> findByNome(String nome) {
-        return find("nome LIKE ?1", "%"+nome+"%").list();
+        return find("UPPER(nome) LIKE UPPER(?1)", "%"+nome+"%").list();
     }
     
 }
