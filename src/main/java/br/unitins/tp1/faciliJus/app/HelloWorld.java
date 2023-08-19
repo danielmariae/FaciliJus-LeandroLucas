@@ -1,8 +1,16 @@
 package br.unitins.tp1.faciliJus.app;
 
-public class HelloWorld { 
-    public static void main(String[] args) {
-        System.out.println("Hello, world!");
-    }
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
+@Path("/hello")
+public class HelloWorld { 
+  
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    public String hello(){
+        return "Olá, mundo!";
+    }
 }
