@@ -4,7 +4,7 @@ import java.util.List;
 import br.unitins.tp1.facilijus.dto.ClienteDTO;
 import br.unitins.tp1.facilijus.dto.ClienteResponseDTO;
 import br.unitins.tp1.facilijus.model.Cliente;
-import br.unitins.tp1.facilijus.repository.ClienteRepository;
+import br.unitins.tp1.facilijus.service.ClienteService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -26,60 +26,41 @@ import jakarta.ws.rs.core.MediaType;
 public class ClienteResource {
 
     @Inject
-    ClienteRepository repository;
+    ClienteService service;
 
     @POST
-    @Transactional
     public ClienteResponseDTO insert(ClienteDTO dto) {
-        Cliente novoCliente = new Cliente();
-        novoCliente.setNome(dto.getNome());
-        novoCliente.setCpf(dto.getCpf());
-
-        repository.persist(novoCliente);
-
-        return ClienteResponseDTO.valueOf(novoCliente);
+        return service.insert(dto);
     }
 
     @PUT
-    @Transactional
     @Path("/{id}")
-    public ClienteResponseDTO update(ClienteDTO dto, @PathParam("id") Long id) { 
-        Cliente cliente = repository.findById(id);
-        if(cliente != null){
-            cliente.setNome(dto.getNome());
-            cliente.setCpf(dto.getCpf());
-        }else{
-            throw new NotFoundException();
-        }
-
-        return ClienteResponseDTO.valueOf(cliente);
+    public ClienteResponseDTO update(ClienteDTO dto, @PathParam("id") Long id) {
+        return service.update(dto, id);
     }
     
     @DELETE
-    @Transactional
     @Path("/id")
     public void delete(ClienteResponseDTO dto, @PathParam("id") Long id){
-        if(!repository.deleteById(id)){
-            throw new NotFoundException();
-        }
+        service.delete(id);
     }
 
     @GET
     @Path("/listarTodos")
     public List<ClienteResponseDTO> findAll() {
-        return repository.listAll().stream().map(c -> ClienteResponseDTO.valueOf(c)).toList();
+        return service.findAll();
     }
 
     @GET
     @Path("/{id}")
     public Cliente findById(@PathParam("id") Long id) {
-        return repository.findById(id);
+        return service.findById(id);
     }
 
     @GET
     @Path("/search/nome/{nome}")
     public List<Cliente> findByNome(@PathParam("nome") String nome) {
-        return repository.findByNome(nome);
+        return service.findByNome(nome);
     }
 
 }
