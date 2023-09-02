@@ -1,4 +1,4 @@
-package br.unitins.tp1.faciliJus.app;
+package br.unitins.tp1.facilijus.app;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

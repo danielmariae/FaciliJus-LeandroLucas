@@ -1,13 +1,14 @@
-package br.unitins.tp1.faciliJus.model;
+package br.unitins.tp1.facilijus.model;
 
 import java.time.LocalDate;
+// import br.unitins.tp1.facilijus.model.Endereco;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Advogado {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,8 +16,8 @@ public class Advogado {
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;
-    private String oab;
-
+    // private Endereco endereco;
+    
     public Long getId() {
         return id;
     }
@@ -41,10 +42,11 @@ public class Advogado {
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    public String getOab() {
-        return oab;
-    }
-    public void setOab(String oab) {
-        this.oab = oab;
-    }
+//     public Endereco getEndereco() {
+//         return endereco;
+//     }
+//     public void setEndereco(Endereco endereco) {
+//         this.endereco = endereco;
+//     }
+// 
 }

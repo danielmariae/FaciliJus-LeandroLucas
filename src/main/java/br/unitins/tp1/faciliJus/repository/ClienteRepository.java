@@ -1,14 +1,14 @@
-package br.unitins.tp1.faciliJus.repository;
+package br.unitins.tp1.facilijus.repository;
 
 import java.util.List;
 
-import br.unitins.tp1.faciliJus.model.Advogado;
+import br.unitins.tp1.facilijus.model.Cliente;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class AdvogadoRepository implements PanacheRepository<Advogado>{
-    public List<Advogado> findByNome(String nome) {
+public class ClienteRepository implements PanacheRepository<Cliente>{
+    public List<Cliente> findByNome(String nome) {
         return find("UPPER(nome) LIKE UPPER(?1)", "%"+nome+"%").list();
     }
     
