@@ -1,16 +1,14 @@
-package br.unitins.tp1.facilijus.resource;
+package br.unitins.tp1.hardstop.resource;
 import java.util.List;
 
-import br.unitins.tp1.facilijus.dto.ClienteDTO;
-import br.unitins.tp1.facilijus.dto.ClienteResponseDTO;
-import br.unitins.tp1.facilijus.model.Cliente;
-import br.unitins.tp1.facilijus.service.ClienteService;
+import br.unitins.tp1.hardstop.dto.ClienteDTO;
+import br.unitins.tp1.hardstop.dto.ClienteResponseDTO;
+import br.unitins.tp1.hardstop.model.Cliente;
+import br.unitins.tp1.hardstop.service.ClienteService;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -59,7 +57,7 @@ public class ClienteResource {
 
     @GET
     @Path("/search/nome/{nome}")
-    public List<Cliente> findByNome(@PathParam("nome") String nome) {
+    public List<ClienteResponseDTO> findByNome(@PathParam("nome") String nome) {
         return service.findByNome(nome);
     }
 

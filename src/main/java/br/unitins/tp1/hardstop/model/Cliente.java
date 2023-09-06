@@ -1,7 +1,7 @@
-package br.unitins.tp1.facilijus.model;
+package br.unitins.tp1.hardstop.model;
 
 import java.time.LocalDate;
-// import br.unitins.tp1.facilijus.model.Endereco;
+// import br.unitins.tp1.hardstop.model.Endereco;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -1,15 +1,16 @@
-package br.unitins.tp1.facilijus.service;
+package br.unitins.tp1.hardstop.service;
 
 import java.util.List;
 
-import br.unitins.tp1.facilijus.dto.ClienteDTO;
-import br.unitins.tp1.facilijus.dto.ClienteResponseDTO;
-import br.unitins.tp1.facilijus.model.Cliente;
-import br.unitins.tp1.facilijus.repository.ClienteRepository;
+import br.unitins.tp1.hardstop.dto.ClienteDTO;
+import br.unitins.tp1.hardstop.dto.ClienteResponseDTO;
+import br.unitins.tp1.hardstop.model.Cliente;
+import br.unitins.tp1.hardstop.repository.ClienteRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.PathParam;
 
 @ApplicationScoped
 public class ClienteServiceImpl implements ClienteService {
@@ -53,16 +54,15 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public List<ClienteResponseDTO> findAll() {
-        return repository.listAll().stream().map(c -> ClienteResponseDTO.valueOf(c)).toList();
+        return repository.listAll().stream().map(ClienteResponseDTO::valueOf).toList();
     }
 
-    @Override
-    public ClienteResponseDTO findById(Long id) {
-        return ClienteResponseDTO.valueOf(repository.findById(id));
+    public Cliente findById(@PathParam("id") Long id) {
+        return repository.findById(id);
     }
 
     @Override
     public List<ClienteResponseDTO> findByNome(String nome) {
-        return repository.findByNome(nome);
+        return repository.findByNome(nome).stream().map(ClienteResponseDTO::valueOf).toList();
     }    
 }
